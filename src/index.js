@@ -3,20 +3,47 @@ const { ApolloServer, gql } = require("apollo-server-express");
 const app = express();
 const port = process.env.PORT || 4000;
 
-app.get("/", (req, res) => res.send("Hello World!!!"));
+
+let notes = [
+    {
+      id: '1',
+      content: 'This is a note',
+      author: 'Adam Scott'
+    },
+    {
+      id: '2',
+      content: 'This is another note',
+      author: 'Harlow Everly'
+    },
+    {
+      id: '3',
+      content: 'Oh hey look, another note!',
+      author: 'Riley Harrison'
+    }
+  ];
+  
 
 
-
-// Construct a schema, using GraphQL schema language
+// Construct a schema, using GraphQL's schema language
 const typeDefs = gql`
+  type Note {
+    id: ID
+    content: String
+    author: String
+  }
+
   type Query {
     hello: String
+    notes: [Note]
   }
+
 `;
+
 // Provide resolver functions for our schema fields
 const resolvers = {
   Query: {
     hello: () => "Hello world!",
+    notes : () => notes
   },
 };
 

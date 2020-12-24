@@ -1,3 +1,3 @@
 git add .
-git commit -m "Apollo Server setup"
+git commit -m "adding type Note "
 git push origin main
